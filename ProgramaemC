@@ -1,0 +1,154 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <windows.h>
+#include <math.h>
+
+#define TAM 60
+void emprestimo ()
+{
+    float juros;
+    int tempo;
+    float emprestimoo;
+    float montante;
+    float taxa= 0.01;
+    float prestacao;
+    printf("Qual o valor do emprestimo? ");
+    scanf("%f", &emprestimoo);
+
+    printf("Em quanto tempo deseja pagar? (Digite em meses): ");
+    scanf("%d", &tempo);
+
+    juros= emprestimoo*taxa*tempo;
+    montante= juros+emprestimoo;
+
+    prestacao= montante/tempo;
+
+
+
+    printf("\nSua prestacao por mes eh: %.2f\n", prestacao);
+    printf("O montante final eh: %.2f", montante);
+
+}
+void investimo()
+{
+    float juros;
+    int  tempo;
+    float dinheiroinvestido;
+    float montante;
+    float taxa= 0.0259;
+    float total;
+    float totaldejuros;
+    printf("Qual eh o valor que sera investido? ");
+    scanf("%f", &dinheiroinvestido);
+
+    printf("Quanto tempo voce deseja deixar investindo? (digite em meses) ");
+    scanf("%d", &tempo);
+
+    //M = C (1+i)^t
+    total = (dinheiroinvestido *(pow((1+taxa),tempo)));
+    totaldejuros = total - dinheiroinvestido;
+    printf("O valor final do investimento sera de: %.2f\n ", total);
+    printf("O valor total de juros sera de: %.2f\n", totaldejuros);
+
+
+
+
+}
+
+
+void cadastrarCliente()
+{
+    char emprestimo[5][TAM];
+    char endereco[TAM];
+    char bairro [TAM];
+    char celular[TAM];
+    char cidade [TAM];
+    int quantidademeses;
+    float jurossimples,juroscompostos,valoremprestimo,total,taxa;
+
+    printf("Digite o nome do cliente: ");
+    scanf("%[^\n]s", &emprestimo[0]);
+
+    fflush(stdin);
+
+    printf("Digite a cidade do cliente: ");
+    scanf("%[^\n]s", &emprestimo[1]);
+
+    fflush(stdin);
+    printf("Digite o nome da rua e numero da casa do cliente: ");
+    scanf("%[^\n]s",&emprestimo[2]);
+
+    fflush(stdin);
+
+    printf("Digite o nome do bairro: ");
+    scanf("%[^\n]s", &emprestimo[3]);
+
+    fflush(stdin);
+
+
+    printf("Digite o celular com DDD do cliente: ");
+    scanf("%[^\n]s", &emprestimo[4]);
+
+    fflush(stdin);
+
+
+
+}
+
+
+
+int main()
+{
+    int menu = 0;
+    char controle;
+
+    do{
+
+        printf("\n        Bem vindo       ");
+        printf("\n\n1.Emprestimo ");
+        printf("\n\n2.Investimento ");
+        printf("\n\nDigite sua opcao: ");
+        scanf("%d", &menu);
+        fflush(stdin);
+
+
+
+
+       switch(menu){
+        case 1:
+            system("cls");
+            controle = 'n';
+
+            cadastrarCliente();
+
+            emprestimo();
+
+            fflush(stdin);
+
+            printf("\nPara retornar ao menu digite 's' para sair digite 'n': ");
+            scanf("%c", &controle);
+            fflush(stdin);
+
+            break;
+
+        case 2:
+            system("cls");
+            cadastrarCliente();
+            investimo();
+
+            fflush(stdin);
+
+            printf("\nPara retornar ao menu digite 's' para sair digite 'n': ");
+            scanf("%c", &controle);
+            fflush(stdin);
+
+            break;
+
+
+            default:
+            printf("\nERRO!");
+            exit(0);
+        }
+    }       while(controle != 'n');
+    return 0;
+ }
