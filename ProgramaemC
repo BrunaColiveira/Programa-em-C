@@ -6,27 +6,23 @@
 #define TAM 60
 void emprestimo ()
 {
-    float juros;
-    int tempo;
-    float emprestimoo;
-    float montante;
-    float taxa= 0.01;
-    float prestacao;
+    float emp[6]= {0,0,0,0,0.01,0};
+
     printf("Qual o valor do emprestimo? ");
-    scanf("%f", &emprestimoo);
+    scanf("%f", &emp[2]);
 
     printf("Em quanto tempo deseja pagar? (Digite em meses): ");
-    scanf("%d", &tempo);
+    scanf("%f", &emp[1]);
 
-    juros= emprestimoo*taxa*tempo;
-    montante= juros+emprestimoo;
+    emp[0]= emp[2]*emp[4]*emp[1];
+    emp[3]= emp[0]+emp[2];
 
-    prestacao= montante/tempo;
+    emp[5]= emp[3]/emp[1];
 
 
 
-    printf("\nSua prestacao por mes eh: %.2f\n", prestacao);
-    printf("O montante final eh: %.2f", montante);
+    printf("\nSua prestacao por mes eh: %.2f\n", emp[5]);
+    printf("O montante final eh: %.2f", emp[3]);
 
 }
 void investimo()
@@ -44,6 +40,8 @@ void investimo()
     printf("Quanto tempo voce deseja deixar investindo? (digite em meses) ");
     scanf("%d", &tempo);
 
+
+
     //M = C (1+i)^t
     total = (dinheiroinvestido *(pow((1+taxa),tempo)));
     totaldejuros = total - dinheiroinvestido;
@@ -59,10 +57,7 @@ void investimo()
 void cadastrarCliente()
 {
     char emprestimo[5][TAM];
-    char endereco[TAM];
-    char bairro [TAM];
-    char celular[TAM];
-    char cidade [TAM];
+
     int quantidademeses;
     float jurossimples,juroscompostos,valoremprestimo,total,taxa;
 
@@ -90,6 +85,11 @@ void cadastrarCliente()
     scanf("%[^\n]s", &emprestimo[4]);
 
     fflush(stdin);
+     printf("O cadastro do cliente eh \n");
+     for (int i=0; i<5; i++){
+      printf("| %s |\n", emprestimo[i]);
+
+     }
 
 
 
@@ -134,6 +134,7 @@ int main()
         case 2:
             system("cls");
             cadastrarCliente();
+
             investimo();
 
             fflush(stdin);
